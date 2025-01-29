@@ -1,29 +1,46 @@
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class PlantingZone : MonoBehaviour
 {
     private bool _isOccupied = false;
-    private void OnCollisionEnter(Collision collision)
+    [SerializeField] private GameObject plantPrefab;
+    [SerializeField] private Transform plantingPosition;
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (!_isOccupied && collision.gameObject.gameObject.CompareTag("Plant"))
+        if (other.gameObject.CompareTag("Hand") && TryGetComponent(out XRDirectInteractor interactor))
         {
-            GameObject plant = collision.gameObject;
+            //Register to execute Plant method when controller's select buttun is pressed
+            interactor.selectEntered.AddListener(Plant);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Hand") && TryGetComponent(out XRDirectInteractor interactor))
+        {
+            interactor.selectEntered.RemoveListener(Plant);
+        }
+    }
 
-            XRGrabInteractable grabInteractable = plant.GetComponent<XRGrabInteractable>();
-            if (grabInteractable != null)
-            {
-                grabInteractable.enabled = false;
-            }
-            Rigidbody rb = plant.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.isKinematic = true;
-            }
+    private void Plant(SelectEnterEventArgs args)
+    {
+        // Get the object in the player's hand
+        XRGrabInteractable grabbedObject = args.interactableObject as XRGrabInteractable;
 
-            plant.transform.position = transform.position + new Vector3(0, transform.localScale.y*2, 0);
-            _isOccupied = true;
-            Debug.Log("Planted");
+        if (grabbedObject != null)
+        {
+            if (grabbedObject.CompareTag("Plant") && !_isOccupied)
+            {
+                // Generate where to plant
+                Instantiate(plantPrefab, plantingPosition.position, Quaternion.identity);
+
+                // Destroy plant that had
+                Destroy(grabbedObject.gameObject);
+                _isOccupied = true;
+            }
         }
     }
 }

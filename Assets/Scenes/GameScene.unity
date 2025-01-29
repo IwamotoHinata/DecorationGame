@@ -696,7 +696,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -793,7 +793,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -809,6 +809,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f854b9e73bd9fb14d87a70d8451423f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plantPrefab: {fileID: 7336765939324395906, guid: 23ba6976335f09b44b45e47794b11142, type: 3}
+  plantingPosition: {fileID: 1058960237}
 --- !u!1001 &1222863309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -820,6 +822,10 @@ PrefabInstance:
     - target: {fileID: 3923943876410264435, guid: 55cfa8bf00b757e48af733526ca15792, type: 3}
       propertyPath: m_Name
       value: OculusTouchForQuest2_Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923943876410264435, guid: 55cfa8bf00b757e48af733526ca15792, type: 3}
+      propertyPath: m_TagString
+      value: Hand
       objectReference: {fileID: 0}
     - target: {fileID: 3923943876410693459, guid: 55cfa8bf00b757e48af733526ca15792, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1045,6 +1051,10 @@ PrefabInstance:
     - target: {fileID: 5826611023651499826, guid: 8c6f6e5fa37a7114e82fe4718fbd3fff, type: 3}
       propertyPath: m_Name
       value: OculusTouchForQuest2_Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 5826611023651499826, guid: 8c6f6e5fa37a7114e82fe4718fbd3fff, type: 3}
+      propertyPath: m_TagString
+      value: Hand
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1550,7 +1560,7 @@ Transform:
   m_GameObject: {fileID: 1385905941}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0017483362, y: 0.0017422442, z: 0.0017422442, w: 0.99999547}
-  m_LocalPosition: {x: 0, y: 1.717, z: 3.019}
+  m_LocalPosition: {x: 1.827, y: 0.63, z: 3.019}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
