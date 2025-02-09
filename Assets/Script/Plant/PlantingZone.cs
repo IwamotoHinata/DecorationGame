@@ -1,45 +1,37 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class PlantingZone : MonoBehaviour
 {
-    private bool _isOccupied = false;
-    [SerializeField] private GameObject plantPrefab;
-    [SerializeField] private Transform plantingPosition;
-
-    private void OnTriggerEnter(Collider other)
+    public void OnSelectEntered(SelectEnterEventArgs args)
     {
-        if (other.gameObject.CompareTag("Hand") && TryGetComponent(out XRDirectInteractor interactor))
+        // Cast interactableObject to XRBaseInteractable
+        XRBaseInteractable interactable = args.interactableObject as XRBaseInteractable;
+        if (interactable != null)
         {
-            //Register to execute Plant method when controller's select buttun is pressed
-            interactor.selectEntered.AddListener(Plant);
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Hand") && TryGetComponent(out XRDirectInteractor interactor))
-        {
-            interactor.selectEntered.RemoveListener(Plant);
-        }
-    }
+            // Get the GameObject of the selected object
+            GameObject selectedObject = interactable.gameObject;
 
-    private void Plant(SelectEnterEventArgs args)
-    {
-        // Get the object in the player's hand
-        XRGrabInteractable grabbedObject = args.interactableObject as XRGrabInteractable;
-
-        if (grabbedObject != null)
-        {
-            if (grabbedObject.CompareTag("Plant") && !_isOccupied)
+            // Check if the selected object has the PlantBehavior component attached.
+            if (selectedObject.TryGetComponent(out PlantBehavior plantBahavior))
             {
-                // Generate where to plant
-                Instantiate(plantPrefab, plantingPosition.position, Quaternion.identity);
+                plantBahavior.enabled = true;
+            }
+        }
+    }
+    public void OnSelectExited(SelectExitEventArgs args)
+    {
+        XRBaseInteractable interactable = args.interactableObject as XRBaseInteractable;
+        if (interactable != null)
+        {
+            // Get the GameObject of the selected object
+            GameObject selectedObject = interactable.gameObject;
 
-                // Destroy plant that had
-                Destroy(grabbedObject.gameObject);
-                _isOccupied = true;
+            // Check if the selected object has the PlantBehavior component attached.
+            if (selectedObject.TryGetComponent(out PlantBehavior plantBahavior))
+            {
+                plantBahavior.enabled = false;
             }
         }
     }
