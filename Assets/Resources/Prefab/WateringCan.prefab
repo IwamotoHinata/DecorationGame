@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4887863110713166112}
+  - component: {fileID: 7501200389288990461}
   m_Layer: 0
   m_Name: WateringCan
   m_TagString: Untagged
@@ -33,6 +34,21 @@ Transform:
   - {fileID: 4593360663435164081}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7501200389288990461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5085607874937773921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b42fe40a2a9f404596f30d5bcef1075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waterEffect: {fileID: 8624213051405031578}
+  _isWatering:
+    value: 0
 --- !u!1 &8334071322760817653
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,13 +92,14 @@ GameObject:
   - component: {fileID: 1186163156747740942}
   - component: {fileID: 5645372815496903155}
   - component: {fileID: 7838673085858232227}
+  - component: {fileID: 1907461981058102337}
   m_Layer: 0
   m_Name: WaterEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1186163156747740942
 Transform:
   m_ObjectHideFlags: 0
@@ -4899,6 +4916,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &1907461981058102337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8624213051405031578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb393a66d3e8df46b635fea657f551e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8816962370352351794
 GameObject:
   m_ObjectHideFlags: 0
