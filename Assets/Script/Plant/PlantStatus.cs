@@ -41,6 +41,11 @@ public class PlantStatus : MonoBehaviour
         StartCoroutine(SearchTrash());
     }
 
+    public void IncreaseMoisture(int value)
+    {
+        _moisture.Value = Mathf.Min(_moisture.Value += value, 100);
+    }
+
     private IEnumerator LostMoisture()
     {
         while (true)
