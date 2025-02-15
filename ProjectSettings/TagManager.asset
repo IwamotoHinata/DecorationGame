@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Plant
   - Hand
+  - Trash
   layers:
   - Default
   - TransparentFX
