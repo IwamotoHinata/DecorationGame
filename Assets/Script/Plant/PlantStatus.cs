@@ -6,7 +6,7 @@ using System.Collections;
 public class PlantStatus : MonoBehaviour
 {
     [SerializeField] private IntReactiveProperty _health = new IntReactiveProperty(100);
-    [SerializeField] private IntReactiveProperty _moisture = new IntReactiveProperty(5);
+    [SerializeField] private IntReactiveProperty _moisture = new IntReactiveProperty(100);
     [SerializeField] private ReactiveProperty<PlantState> _state = new ReactiveProperty<PlantState>(PlantState.GoodHealth);
 
     [SerializeField] private float _searchRadius = 1.0f;
@@ -66,7 +66,8 @@ public class PlantStatus : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1.0f);
-            Mathf.Max(0f, _moisture.Value--);
+            _moisture.Value--;
+            _moisture.Value = Mathf.Max(0, _moisture.Value);
         }
     }
 
