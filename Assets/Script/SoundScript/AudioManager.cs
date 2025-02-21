@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 
@@ -32,14 +30,14 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = Array.Find(musicSounds, x => x.name == name);
 
-        if (s != null) 
-        {
-            Debug.Log("Sound Not Found");
-        }
-        else
+        if (s == null) 
         {
             musicSource.clip = s.clip;
             musicSource.Play();
+        }
+        else
+        {
+            Debug.Log("Sound Not Found");
         }
 
     }
@@ -50,11 +48,11 @@ public class AudioManager : MonoBehaviour
 
         if (s != null)
         {
-            Debug.Log("Sound Not Found");
+            sfxSource.PlayOneShot(s.clip);
         }
         else
         {
-            sfxSource.PlayOneShot(s.clip);
+            Debug.Log("Sound Not Found");
         }
     }
 
