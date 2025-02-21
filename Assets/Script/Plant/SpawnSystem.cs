@@ -3,13 +3,13 @@ using UnityEngine;
 public class SpawnStashAndPlant : MonoBehaviour
 {
     [SerializeField] private GameObject _stashPrefab;
-    [SerializeField] private GameObject _plantPrefab;
+    [SerializeField] private GameObject[] _plantPrefab;
 
-    [SerializeField] private Vector3 _spawnAreaSize = new Vector3(100f, 0f, 100f);
+    [SerializeField] private Vector3 _spawnAreaSize = new Vector3(200f, 0f, 200f);
     [SerializeField] private int _stashSpawnCount = 20;
     [SerializeField] private int _plantSpawnCount = 10;
     private Vector3 _spawnPosition = Vector3.zero;
-
+    private int _random;
     private void Start()
     {
         SpawnPlantAndStash();
@@ -23,9 +23,10 @@ public class SpawnStashAndPlant : MonoBehaviour
         {
             //Obtain the position of plant generation
             _spawnPosition = GetRandomPosition(_spawnAreaSize, this.transform.position);
-            if (CheckOverlappingObject(_plantPrefab)) //if not overlapping
+            _random = Random.Range(0, _plantPrefab.Length);
+            if (CheckOverlappingObject(_plantPrefab[_random])) //if not overlapping
             {
-                Instantiate(_plantPrefab, _spawnPosition, Quaternion.identity, parent);
+                Instantiate(_plantPrefab[_random], _spawnPosition, Quaternion.identity, parent);
 
                 //Generate stash around plant
                 for (int j = 0; j < _stashSpawnCount / _plantSpawnCount; j++)
