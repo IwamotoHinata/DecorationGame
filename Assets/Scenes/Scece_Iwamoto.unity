@@ -777,23 +777,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677922041}
   m_CullTransparentMesh: 1
---- !u!1 &1692010312 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8624213051405031578, guid: 5bf4359e633f4b8488e3903037e2adea, type: 3}
-  m_PrefabInstance: {fileID: 5246100846273090009}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1692010314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1692010312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddb393a66d3e8df46b635fea657f551e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1786081583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,17 +1139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WateringCan
       objectReference: {fileID: 0}
-    - target: {fileID: 8624213051405031578, guid: 5bf4359e633f4b8488e3903037e2adea, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8624213051405031578, guid: 5bf4359e633f4b8488e3903037e2adea, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1692010314}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bf4359e633f4b8488e3903037e2adea, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
