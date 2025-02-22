@@ -8,6 +8,7 @@ TagManager:
   - Hand
   - Trash
   - Tool
+  - Garden
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Water
   - UI
   - Tool
-  - 
+  - Garden
   - 
   - 
   - 
