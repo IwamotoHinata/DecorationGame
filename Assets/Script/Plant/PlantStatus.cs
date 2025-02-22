@@ -17,23 +17,31 @@ public class PlantStatus : MonoBehaviour
     {
         _health.
             Subscribe(x =>
-            { 
-                if(x <= 0 && _state.Value == PlantState.GoodHealth)
+            {
+                if (x <= 0 && _state.Value == PlantState.GoodHealth)
+                {
                     _state.Value = PlantState.Wither;
+                }
 
                 if (x >= 20 && _state.Value == PlantState.Wither)
+                {
                     _state.Value = PlantState.GoodHealth;
-
+                }
             }).AddTo(this);
 
         _moisture.
             Subscribe(x =>
             {
                 if (x <= 0 && _state.Value == PlantState.GoodHealth)
+                { 
                     _state.Value = PlantState.Wilt;
+                }
+
 
                 if (x >= 20 && _state.Value == PlantState.Wilt)
+                {
                     _state.Value = PlantState.GoodHealth;
+                }
 
             }).AddTo(this);
 
@@ -42,13 +50,18 @@ public class PlantStatus : MonoBehaviour
             {
                 if (state != PlantState.GoodHealth)
                 {
-                    ScoreManager.Instance.DecreaseScore(5);
+                    ScoreManager.Instance.DecreaseScore(10);
+                }
+                else
+                {
+                    ScoreManager.Instance.DecreaseScore(15);
                 }
 
             }).AddTo(this);
 
         StartCoroutine(LostMoisture());
         StartCoroutine(SearchTrash());
+        
     }
 
     public void IncreaseMoisture(int value)
@@ -56,12 +69,26 @@ public class PlantStatus : MonoBehaviour
         _moisture.Value = Mathf.Min(_moisture.Value += value, 100);
     }
 
+    public void IncreaseHealth(int value)
+    {
+        _health.Value = Mathf.Min(_health.Value += value, 100);
+    }
+
     public void DecreaseHealth(int value)
     {
         _health.Value = Mathf.Max(_health.Value -= value, 0);
     }
 
-    private IEnumerator LostMoisture()
+    public IEnumerator IncreaseHealthInGarden()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1.0f);
+            IncreaseHealth(10);
+        }
+    }
+
+    public IEnumerator LostMoisture()
     {
         while (true)
         {
@@ -71,7 +98,7 @@ public class PlantStatus : MonoBehaviour
         }
     }
 
-    private IEnumerator SearchTrash()
+    public IEnumerator SearchTrash()
     {
         while (true)
         {
@@ -89,6 +116,7 @@ public class PlantStatus : MonoBehaviour
                 if (collider.gameObject.CompareTag("Trash"))
                 {
                     DecreaseHealth(10);
+                    break;
                 }
             }
         }
