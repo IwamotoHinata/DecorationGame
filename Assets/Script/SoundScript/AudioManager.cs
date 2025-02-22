@@ -30,7 +30,7 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = Array.Find(musicSounds, x => x.name == name);
 
-        if (s == null) 
+        if (s != null) 
         {
             musicSource.clip = s.clip;
             musicSource.Play();

@@ -12,14 +12,10 @@ public class PlayerSound : MonoBehaviour
     {
         _footSoundTime = _initialSoundTime;
         _characterController = GetComponent<CharacterController>();
-        GameObject audioManagerObj = GameObject.Find("AudioManager");
-        if (audioManagerObj != null)
+        _audioManager = AudioManager.Instance;
+        if (_audioManager == null)
         {
-            _audioManager = audioManagerObj.GetComponent<AudioManager>();
-            if (_audioManager == null)
-            {
-                Debug.LogError("_audioManager is not found");
-            }
+            Debug.LogError("not found AudioManager");
         }
     }
     private void Update()
@@ -29,8 +25,7 @@ public class PlayerSound : MonoBehaviour
 
     private void WalkSound()
     {
-        _isMoveing = (Mathf.Abs(_characterController.velocity.x) + Mathf.Abs(_characterController.velocity.z) >= 0.05f) ? true : false;
-        Debug.Log(_isMoveing);
+        _isMoveing = Mathf.Abs(_characterController.velocity.x) + Mathf.Abs(_characterController.velocity.z) >= 0.05f;
         if (_isMoveing)
         {
             _footSoundTime -= Time.deltaTime;
@@ -41,19 +36,7 @@ public class PlayerSound : MonoBehaviour
             }
         }
     }
-
-    public void GrabSound()
-    {
-        _audioManager.PlaySFX("GrabSE");
-    }
-
-    public void ReleaseSound()
-    { 
-        _audioManager.PlaySFX("ReleaseSE");
-    }
-
-    public void RemoveSound()
-    {
-        _audioManager.PlaySFX("RemoveSE");
-    }
+    public void GrabSound()=> _audioManager?.PlaySFX("GrabSE");
+    public void ReleaseSound()=>_audioManager?.PlaySFX("ReleaseSE");
+    public void RemoveSound()=> _audioManager?.PlaySFX("RemoveSE");
 }
