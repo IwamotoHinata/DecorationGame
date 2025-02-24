@@ -728,6 +728,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1334763302747535573, guid: dc5079d0cb41d2a49b9ae8975af98f82, type: 3}
+      propertyPath: m_TerrainData
+      value: 
+      objectReference: {fileID: 15600000, guid: bfdad5ca4ebb4ce41bd4e9a40cd072fd, type: 2}
     - target: {fileID: 1700031521949630982, guid: dc5079d0cb41d2a49b9ae8975af98f82, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -775,6 +779,10 @@ PrefabInstance:
     - target: {fileID: 4612679237086575795, guid: dc5079d0cb41d2a49b9ae8975af98f82, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4685806826920030847, guid: dc5079d0cb41d2a49b9ae8975af98f82, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4800943987559915052, guid: dc5079d0cb41d2a49b9ae8975af98f82, type: 3}
       propertyPath: m_Layer
