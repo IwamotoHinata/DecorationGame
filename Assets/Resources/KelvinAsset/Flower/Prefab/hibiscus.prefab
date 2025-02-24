@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 4fc69e8b2ac3c4f4981390e9d5412a2d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -2577548232221058511, guid: 4fc69e8b2ac3c4f4981390e9d5412a2d, type: 3}
       propertyPath: m_LocalScale.x
       value: 10
@@ -83,6 +87,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4fc69e8b2ac3c4f4981390e9d5412a2d, type: 3}
       propertyPath: m_Name
       value: hibiscus
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4fc69e8b2ac3c4f4981390e9d5412a2d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4fc69e8b2ac3c4f4981390e9d5412a2d, type: 3}
+      propertyPath: m_TagString
+      value: Plant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

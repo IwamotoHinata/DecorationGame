@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _plantingZones: []
+  _count: 0
 --- !u!4 &161819131
 Transform:
   m_ObjectHideFlags: 0
@@ -823,6 +824,14 @@ PrefabInstance:
     - target: {fileID: 8070515544463219894, guid: dc5079d0cb41d2a49b9ae8975af98f82, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126106549875665222, guid: dc5079d0cb41d2a49b9ae8975af98f82, type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126106549875665222, guid: dc5079d0cb41d2a49b9ae8975af98f82, type: 3}
+      propertyPath: CollisionModule.multiplyColliderForceByParticleSpeed
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8238843699910385530, guid: dc5079d0cb41d2a49b9ae8975af98f82, type: 3}
       propertyPath: m_Layer
@@ -2185,12 +2194,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stashPrefab: {fileID: 440040903062650144, guid: 38bec12d09d93f34ab6475d92f74ac70, type: 3}
   _plantPrefab:
-  - {fileID: 3351911791561622206, guid: f5f9b96735f0d2549a9ca9bec3027baf, type: 3}
-  - {fileID: 8869166124027469673, guid: abc4074b6c7c5944095e58a054b2ba6b, type: 3}
-  - {fileID: 8203625722972370004, guid: a918e88ba17cc8d48b45d2cb8f486bae, type: 3}
-  - {fileID: 1612755760525591698, guid: 152bf56b1ff5e2b49a728b43421b6a8c, type: 3}
-  - {fileID: 4244182523549898715, guid: fb8e556462627fd4c814813db58117fe, type: 3}
-  - {fileID: 7090301973747699887, guid: 59b238df93a0f604cb8b5d8c9c918a51, type: 3}
+  - {fileID: 5949404143270605013, guid: 111df44e15e79ee48be05b6b99009df2, type: 3}
+  - {fileID: 5406620963896904850, guid: a343faf7ef8759f4888cc2a2bfebbd82, type: 3}
+  - {fileID: 4040659098897679543, guid: 9c593c574bb92874080022e2809abcfa, type: 3}
+  - {fileID: 7382562456892210602, guid: e3aab9eb09f52694b8e27b250ea7d348, type: 3}
+  - {fileID: 5250862193532954973, guid: 629ff7da48c4f984fad3d12bf2e7691c, type: 3}
+  - {fileID: 885656314206657827, guid: 4900da2e712d2ff44a6bb6077d9b0ab0, type: 3}
   _spawnAreaSize: {x: 200, y: 0, z: 200}
   _stashSpawnCount: 100
   _plantSpawnCount: 50

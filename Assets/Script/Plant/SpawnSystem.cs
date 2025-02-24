@@ -26,7 +26,7 @@ public class SpawnStashAndPlant : MonoBehaviour
             _random = Random.Range(0, _plantPrefab.Length);
             if (CheckOverlappingObject(_plantPrefab[_random])) //if not overlapping
             {
-                Instantiate(_plantPrefab[_random], _spawnPosition, Quaternion.identity, parent);
+                Instantiate(_plantPrefab[_random], _spawnPosition, _plantPrefab[_random].transform.rotation, parent);
 
                 //Generate stash around plant
                 for (int j = 0; j < _stashSpawnCount / _plantSpawnCount; j++)

@@ -68,6 +68,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: sunflower
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 41a88e7af8ac80840978302ef466b003, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 41a88e7af8ac80840978302ef466b003, type: 3}
+      propertyPath: m_TagString
+      value: Plant
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

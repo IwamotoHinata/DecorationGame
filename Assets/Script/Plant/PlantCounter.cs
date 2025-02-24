@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlantCounter : MonoBehaviour
 {
     [SerializeField] private PlantingZone[] _plantingZones;
-    private int _count = 0;
+    [SerializeField] private int _count = 0;
     private int _maxCount;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
