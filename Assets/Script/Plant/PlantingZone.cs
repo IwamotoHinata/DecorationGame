@@ -4,6 +4,12 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class PlantingZone : MonoBehaviour
 {
+    private PlantCounter _plantCounter;
+    private void Start()
+    {
+        _plantCounter = FindFirstObjectByType<PlantCounter>();
+    }
+
     public void OnSelectEntered(SelectEnterEventArgs args)
     {
         // Cast interactableObject to XRBaseInteractable
@@ -14,9 +20,12 @@ public class PlantingZone : MonoBehaviour
             GameObject selectedObject = interactable.gameObject;
 
             // Check if the selected object has the PlantBehavior component attached.
-            if (selectedObject.TryGetComponent(out PlantBehavior plantBahavior))
+            if (selectedObject.TryGetComponent(out PlantStatus plantStatus))
             {
-                plantBahavior.enabled = true;
+                plantStatus.StopAllCoroutines();
+                plantStatus.StartCoroutine(plantStatus.IncreaseHealthInGarden());
+                ScoreManager.Instance.IncreaseScore(5);
+                _plantCounter.IncreaseCount();
             }
         }
     }
@@ -29,9 +38,12 @@ public class PlantingZone : MonoBehaviour
             GameObject selectedObject = interactable.gameObject;
 
             // Check if the selected object has the PlantBehavior component attached.
-            if (selectedObject.TryGetComponent(out PlantBehavior plantBahavior))
+            if (selectedObject.TryGetComponent(out PlantStatus plantStatus))
             {
-                plantBahavior.enabled = false;
+                plantStatus.StartCoroutine(plantStatus.LostMoisture());
+                plantStatus.StartCoroutine(plantStatus.SearchTrash());
+                plantStatus.StopCoroutine(plantStatus.IncreaseHealthInGarden());
+                _plantCounter.DecreaseCount();
             }
         }
     }
