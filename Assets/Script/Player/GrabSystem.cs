@@ -7,6 +7,7 @@ public class GrabSystem : MonoBehaviour
 {
     private float _time = 3;
     [SerializeField] private Slider _timeSlider;
+    [SerializeField] private Canvas _canvas;
 
     [Header("Time it takes to throw away stash")]
     [SerializeField] private float _initialTime = 3;
@@ -17,7 +18,7 @@ public class GrabSystem : MonoBehaviour
 
     private void Awake()
     {
-
+        _canvas.enabled = false;
         _time = _initialTime;
         if(_timeSlider != null)
         {
@@ -49,8 +50,9 @@ public class GrabSystem : MonoBehaviour
         if (args.interactableObject is XRBaseInteractable interactable)
         {
             GameObject selectedObject = interactable.gameObject;
-            if (selectedObject.CompareTag("Stash"))
+            if (selectedObject.CompareTag("Trash"))
             {
+                _canvas.enabled = true;
                 _isRemoving = true;
                 _toRemoveObj = selectedObject;
             }
@@ -61,6 +63,7 @@ public class GrabSystem : MonoBehaviour
     {
         _sound.ReleaseSound();
 
+        _canvas.enabled = false;
         _isRemoving = false;
         _time = _initialTime;
         _toRemoveObj = null;
@@ -78,10 +81,12 @@ public class GrabSystem : MonoBehaviour
             _sound?.RemoveSound();
 
             Debug.Log("Remove");
+            ScoreManager.Instance.IncreaseScore(5);
             Destroy(_toRemoveObj);
             _time = _initialTime;
             _isRemoving = false;
             _timeSlider.value = _initialTime;
+            _canvas.enabled = false;
         }
     }
 }
