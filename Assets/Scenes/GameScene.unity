@@ -728,6 +728,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stage
       objectReference: {fileID: 0}
+    - target: {fileID: 2535618512085485330, guid: dc5079d0cb41d2a49b9ae8975af98f82, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c9e0b1d253c14a4fbff42af81f241d5, type: 2}
     - target: {fileID: 8688792488350522868, guid: dc5079d0cb41d2a49b9ae8975af98f82, type: 3}
       propertyPath: m_LocalPosition.x
       value: 150
