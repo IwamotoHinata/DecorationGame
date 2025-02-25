@@ -41,12 +41,14 @@ public class GrabSystem : MonoBehaviour
     public void OnSelectEntered(SelectEnterEventArgs args)
     {
         _sound?.GrabSound();
+        Debug.Log("aaaaaa");
 
         if (args.interactableObject is XRBaseInteractable interactable)
         {
             GameObject selectedObject = interactable.gameObject;
             if (selectedObject.CompareTag("Trash"))
             {
+                Debug.Log("Trash");
                 _canvas.enabled = true;
                 _isRemoving = true;
                 _toRemoveObj = selectedObject;
@@ -80,7 +82,7 @@ public class GrabSystem : MonoBehaviour
             Destroy(_toRemoveObj);
             _time = _initialTime;
             _isRemoving = false;
-            _timeSlider.value = _initialTime;
+            _timeSlider.value = 1;
             _canvas.enabled = false;
         }
     }
