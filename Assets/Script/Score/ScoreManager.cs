@@ -25,6 +25,7 @@ public class ScoreManager : MonoBehaviour
     private void Start()
     {
         UpdateScoreText();
+        Invoke("ResetScore", 5);
     }
 
     public void IncreaseScore(int value)
@@ -51,5 +52,11 @@ public class ScoreManager : MonoBehaviour
             scoreText.text = "Score: " + score.ToString();
         }
 
+    }
+
+    private void ResetScore()
+    {
+        score = 0;
+        UpdateScoreText();
     }
 }
