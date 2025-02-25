@@ -7,8 +7,9 @@ public class GrabSystem : MonoBehaviour
 {
     private float _time = 3;
     [SerializeField] private Slider _timeSlider;
+    [SerializeField] private Canvas _canvas;
 
-    [Header("Time it takes to throw away stash")]
+    [Header("Time it takes to throw away trash")]
     [SerializeField] private float _initialTime = 3;
 
     private PlayerSound _sound;
@@ -17,18 +18,13 @@ public class GrabSystem : MonoBehaviour
 
     private void Awake()
     {
-
+        _canvas.enabled = false;
         _time = _initialTime;
-        if(_timeSlider != null)
+        if (_timeSlider != null)
         {
             _timeSlider.maxValue = _initialTime;
             _timeSlider.value = _initialTime;
         }
-        else
-        {
-            Debug.LogError("_timeSlider not found");
-        }
-
         Transform rootTransform = transform.root;
         GameObject mostParent = rootTransform.gameObject;
         _sound = mostParent.GetComponent<PlayerSound>();
@@ -40,17 +36,18 @@ public class GrabSystem : MonoBehaviour
 
     private void Update()
     {
-        if (_isRemoving) PressTime();
+        if (_isRemoving) RemoveTimer();
     }
     public void OnSelectEntered(SelectEnterEventArgs args)
     {
-         _sound?.GrabSound();
+        _sound?.GrabSound();
 
         if (args.interactableObject is XRBaseInteractable interactable)
         {
             GameObject selectedObject = interactable.gameObject;
-            if (selectedObject.CompareTag("Stash"))
+            if (selectedObject.CompareTag("Trash"))
             {
+                _canvas.enabled = true;
                 _isRemoving = true;
                 _toRemoveObj = selectedObject;
             }
@@ -61,13 +58,14 @@ public class GrabSystem : MonoBehaviour
     {
         _sound.ReleaseSound();
 
+        _canvas.enabled = false;
         _isRemoving = false;
         _time = _initialTime;
         _toRemoveObj = null;
         _timeSlider.value = _initialTime;
     }
 
-    private void PressTime()
+    private void RemoveTimer()
     {
         _time -= Time.deltaTime;
         {
@@ -78,10 +76,12 @@ public class GrabSystem : MonoBehaviour
             _sound?.RemoveSound();
 
             Debug.Log("Remove");
+            ScoreManager.Instance.IncreaseScore(5);
             Destroy(_toRemoveObj);
             _time = _initialTime;
             _isRemoving = false;
             _timeSlider.value = _initialTime;
+            _canvas.enabled = false;
         }
     }
 }
