@@ -5,18 +5,12 @@ public class PlayerSound : MonoBehaviour
     private CharacterController _characterController;
     private float _footSoundTime = 0.5f;
     [SerializeField] private float _initialSoundTime = 0.5f;
-    private AudioManager _audioManager;
     private bool _isMoveing = false;
 
     private void Start()
     {
         _footSoundTime = _initialSoundTime;
         _characterController = GetComponent<CharacterController>();
-        _audioManager = AudioManager.Instance;
-        if (_audioManager == null)
-        {
-            Debug.LogError("not found AudioManager");
-        }
     }
     private void Update()
     {
@@ -31,12 +25,12 @@ public class PlayerSound : MonoBehaviour
             _footSoundTime -= Time.deltaTime;
             if (_footSoundTime < 0)
             {
-                _audioManager.PlaySFX("WalkSE");
+                AudioManager.Instance?.PlaySFX("WalkSE");
                 _footSoundTime = _initialSoundTime;
             }
         }
     }
-    public void GrabSound()=> _audioManager?.PlaySFX("GrabSE");
-    public void ReleaseSound()=>_audioManager?.PlaySFX("ReleaseSE");
-    public void RemoveSound()=> _audioManager?.PlaySFX("RemoveSE");
+    public void GrabSound()=> AudioManager.Instance?.PlaySFX("GrabSE");
+    public void ReleaseSound()=>AudioManager.Instance?.PlaySFX("ReleaseSE");
+    public void RemoveSound()=> AudioManager.Instance?.PlaySFX("RemoveSE");
 }

@@ -4850,7 +4850,19 @@ MonoBehaviour:
   musicSounds:
   - name: Theme
     clip: {fileID: 8300000, guid: a4a72e6f8e9fea64cbdd2e20ce21836b, type: 3}
-  sfxSounds: []
+  sfxSounds:
+  - name: WalkSE
+    clip: {fileID: 8300000, guid: 7b0242fe2eb831e4cbf3bada890a9dcd, type: 3}
+  - name: GrabSE
+    clip: {fileID: 8300000, guid: 812100e3982e56842adb6ba5be867b7a, type: 3}
+  - name: RemoveSE
+    clip: {fileID: 8300000, guid: 38cb68a2a49e89c46bea091d75b27976, type: 3}
+  - name: ReleaseSE
+    clip: {fileID: 8300000, guid: 812100e3982e56842adb6ba5be867b7a, type: 3}
+  - name: PlantingSE
+    clip: {fileID: 8300000, guid: 3ef2ba40b7bc4a74896cd54d5ba626c2, type: 3}
+  - name: WaterSE
+    clip: {fileID: 8300000, guid: a74177a52a6473c46a9b41b3c65307f0, type: 3}
   musicSource: {fileID: 528146608}
   sfxSource: {fileID: 401565}
 --- !u!4 &1256369306
