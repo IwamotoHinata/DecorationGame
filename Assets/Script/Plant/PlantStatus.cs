@@ -10,7 +10,9 @@ public class PlantStatus : MonoBehaviour
     [SerializeField] private ReactiveProperty<PlantState> _state = new ReactiveProperty<PlantState>(PlantState.GoodHealth);
 
     [SerializeField] private float _searchRadius = 1.0f;
-
+    [SerializeField] private GameObject _effect;
+    float _lastMoisture;
+    GameObject _spawnedEffect;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,8 +31,9 @@ public class PlantStatus : MonoBehaviour
                 }
             }).AddTo(this);
 
-        _moisture.
-            Subscribe(x =>
+        _moisture
+            .Skip(1)
+            .Subscribe(x =>
             {
                 if (x <= 0 && _state.Value == PlantState.GoodHealth)
                 { 
@@ -43,10 +46,17 @@ public class PlantStatus : MonoBehaviour
                     _state.Value = PlantState.GoodHealth;
                 }
 
+                if (x == 100 && _spawnedEffect == null)
+                {
+                    _spawnedEffect = Instantiate(_effect, this.gameObject.transform.position, _effect.transform.rotation);
+                    Destroy(_spawnedEffect, 5);
+                }
+
             }).AddTo(this);
 
-        _state.
-            Subscribe(state =>
+        _state
+            .Skip(1)
+            .Subscribe(state =>
             {
                 if (state != PlantState.GoodHealth)
                 {
@@ -54,7 +64,7 @@ public class PlantStatus : MonoBehaviour
                 }
                 else
                 {
-                    ScoreManager.Instance.DecreaseScore(15);
+                    ScoreManager.Instance.IncreaseScore(15);
                 }
 
             }).AddTo(this);
@@ -66,6 +76,7 @@ public class PlantStatus : MonoBehaviour
 
     public void IncreaseMoisture(int value)
     {
+        _lastMoisture = _moisture.Value;
         _moisture.Value = Mathf.Min(_moisture.Value += value, 100);
     }
 
@@ -93,6 +104,7 @@ public class PlantStatus : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1.0f);
+            _lastMoisture = _moisture.Value;
             _moisture.Value--;
             _moisture.Value = Mathf.Max(0, _moisture.Value);
         }
