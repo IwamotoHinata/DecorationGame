@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlantCounter : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class PlantCounter : MonoBehaviour
         if (_count == _maxCount)
         {
             ScoreManager.Instance.IncreaseScore(25);
+            SceneManager.LoadScene(2);
         }
     }
 
